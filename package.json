@@ -1,0 +1,41 @@
+{
+  "name": "packagerecipe",
+  "version": "1.0.0",
+  "description": "Package recipe",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest && make-coverage-badge"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dlgiao/PackageRecipe.git"
+  },
+  "author": "Dac Linh Giao Nguyen",
+  "license": "ISC",
+  "jest": {
+    "verbose": true,
+    "coverageReporters": [
+      "json-summary",
+      [
+        "text",
+        {
+          "file": "coverage.txt",
+          "path": "./coverage"
+        }
+      ],
+      "lcov"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "./src/**"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/dlgiao/PackageRecipe/issues"
+  },
+  "homepage": "https://github.com/dlgiao/PackageRecipe#readme",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "make-coverage-badge": "^1.2.0"
+  }
+}
