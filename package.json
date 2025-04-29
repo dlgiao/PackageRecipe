@@ -1,5 +1,5 @@
 {
-  "name": "packagerecipe",
+  "name": "@dlgiao/packagerecipe",
   "version": "1.0.0",
   "description": "Package recipe",
   "main": "index.js",
@@ -9,6 +9,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dlgiao/PackageRecipe.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "author": "Dac Linh Giao Nguyen",
   "license": "ISC",
