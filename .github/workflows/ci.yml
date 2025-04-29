@@ -20,7 +20,7 @@ jobs:
       - name: Setup environment
         uses: actions/setup-node@v4.4.0
         with:
-          node-version: "21.x"
+          node-version: '21.x'
           check-latest: true
 
       - name: Install dependencies
