@@ -16,12 +16,27 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
 
       - name: Setup environment
         uses: actions/setup-node@v4.4.0
         with:
           node-version: 21.x
           registry-url: https://npm.pkg.github.com
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v3.2.1
+        with:
+          versionSpec: '6.3.x'
+
+      - name: Determine Version
+        uses: gittools/actions/gitversion/execute@v3.2.1
+
+      - name: 'Change NPM version'
+        uses: reedyuk/npm-version@1.2.2
+        with:
+          version: $GITVERSION_SEMVER
 
       - name: Install dependencies
         run: npm install
