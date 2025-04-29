@@ -6,12 +6,20 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
+permissions: read-all
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+    env:
+      MAIN_VERSION: '21.x'
+
+    strategy:
+      matrix:
+        node-version: ['21.x', '20.x']
 
     steps:
       - name: Checkout code
@@ -20,7 +28,7 @@ jobs:
       - name: Setup environment
         uses: actions/setup-node@v4.4.0
         with:
-          node-version: '21.x'
+          node-version: ${{ matrix.node-version }}
           check-latest: true
 
       - name: Install dependencies
@@ -28,3 +36,19 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+      - name: Prepare coverage report in markdown
+        uses: fingerprintjs/action-coverage-report-md@v2.0.1
+        id: coverage
+        with:
+          textReportPath: coverage/coverage.txt
+
+      - name: Add coverage commment to the PR
+        uses: marocchino/sticky-pull-request-comment@v2.9.2
+        with:
+          message: ${{ steps.coverage.outputs.markdownReport }}
+
+      - name: Add coverage report to the job summary
+        run: |
+          echo "## Code Coverage v${{ matrix.node-version }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "${{ steps.coverage.outputs.markdownReport }}" >> "$GITHUB_STEP_SUMMARY"
