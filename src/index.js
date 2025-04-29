@@ -1,4 +1,4 @@
 // index.js
-module.exports = function greet () {
-    return "Hello world! DDC24"
-}
+module.exports = function greet() {
+  return "Hello world! DDC24";
+};
