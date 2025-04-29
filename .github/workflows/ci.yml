@@ -17,10 +17,6 @@ jobs:
     env:
       MAIN_VERSION: '21.x'
 
-    strategy:
-      matrix:
-        node-version: ['21.x', '20.x']
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
