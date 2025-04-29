@@ -1,15 +1,15 @@
 name: Super-linter
 
 on:
-  workflow_dispatch: 
-  pull_request: 
+  workflow_dispatch:
+  pull_request:
 
 permissions: read-all
 
 jobs:
   super-linter:
     runs-on: ubuntu-latest
-    permissions: 
+    permissions:
       contents: read
       packages: read
       statuses: write
